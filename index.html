@@ -4,25 +4,33 @@
 <head>
     <meta charset="utf-8" />
     <title>Password Generator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
-    <form>
-        <div id="names">
-            <label for="bigLetters">A-Z</label>
-            <label for="smallLetters">a-z</label>
-            <label for="numbers">0-9</label>
-            <label for="specialSigns">/*+=&...</label>
-        </div>
-        <div id="inputs">
-            <input type="checkbox" name="bigLetters" />
-            <input type="checkbox" name="smallLetters" />
-            <input type="checkbox" name="numbers" />
-            <input type="checkbox" name="specialSigns" />
-            <input type="number" name="length" min=0 />
-            <input type="submit" value="Generate" />
-        </div>
-    </form>
+    <div class="container">
+        <form>
+            <div class="inputs">
+                <input type="checkbox" name="bigLetters" />
+                <input type="checkbox" name="smallLetters" />
+                <input type="checkbox" name="numbers" />
+                <input type="checkbox" name="specialSigns" />
+            </div>
+            <div class="names">
+                <label for="bigLetters">A-Z</label>
+                <label for="smallLetters">a-z</label>
+                <label for="numbers">0-9</label>
+                <label for="specialSigns">/*+=&...</label>
+            </div>
+            <div class="setLengthAndSubmit">
+                <label for="length">Password length</label>
+                <input type="number" name="length" min=0 />
+                <input type="submit" value="Generate" id="generatePassword" />
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="script.js">
+    </script>
 </body>
 
 </html>
