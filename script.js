@@ -12,6 +12,24 @@ class PasswordGenerator {
         this.specialSigns.checked = false;
         this.passwordLength.value = 8;
     }
+    pickRandomASCIICharacter() {
+        let min = 33;
+        let max = 126;
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    validateCharacter(characterNum, arrayOfValidRanges) {
+        for (range in arrayOfValidRanges) {
+            if (characterNum >= range[0] || characterNum <= range[1]) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    generatePassword() {
+
+    }
     displayStates() {
         console.log(`
         A-Z ${this.bigLetters.checked}
