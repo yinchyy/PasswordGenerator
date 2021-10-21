@@ -59,7 +59,6 @@ class PasswordGenerator {
     }
     generatePassword() {
         let i = 0, tmp, result = '';
-        console.log(this.passwordLength.value);
         while (i < this.passwordLength.value) {
             tmp = this.pickRandomASCIICharacter();
             if (this.validateCharacter(tmp, this.validRanges)) {
@@ -68,6 +67,16 @@ class PasswordGenerator {
             }
         }
         return result;
+    }
+    displayPassword() {
+        if (!document.getElementById('passwordOutputField')) {
+            const element = document.createElement('input');
+            element.setAttribute('type', 'text');
+            element.setAttribute('id', 'passwordOutputField');
+            document.body.appendChild(element);
+        }
+        const elementId = document.getElementById('passwordOutputField');
+        elementId.value = this.generatePassword();
     }
     displayStates() {
         console.log(`
