@@ -13,32 +13,6 @@ class PasswordGenerator {
         this.passwordLength.value = 8;
     }
     get validRanges() {
-        if (this.bigLetters.checked) {
-            if (this.smallLetters.checked) {
-                if (this.numbers.checked) {
-                    return [[65, 90], [97, 122], [48, 57]];
-                }
-                return [[65, 90], [97, 122]];
-            }
-            return [[65, 90]];
-        }
-        else if (this.smallLetters.checked) {
-            if (this.numbers.checked) {
-                return [[97, 122], [48, 57]];
-            }
-            return [[97, 122]];
-        }
-        else if (this.numbers.checked) {
-            return [[48, 57]];
-        }
-        else if (this.specialSigns.checked) {
-            return [[65, 90], [97, 122], [48, 57]];
-        }
-        else {
-            return false;
-        }
-    }
-    get altValidRanges() {
         let tmp = new Array();
         if (this.bigLetters.checked) {
             tmp.push([65, 90]);
@@ -79,12 +53,7 @@ class PasswordGenerator {
                 }
             }
             else {
-                console.log(range);
-                console.log(typeof (range[0]) === 'object');
-                console.log(range[0].length);
-                console.log(typeof (range[0]));
-                //return false;
-                return true;
+                return false;
             }
         }
     }
@@ -93,9 +62,7 @@ class PasswordGenerator {
         console.log(this.passwordLength.value);
         while (i < this.passwordLength.value) {
             tmp = this.pickRandomASCIICharacter();
-            //console.log(tmp);
-            //console.log(String.fromCharCode(tmp));
-            if (this.validateCharacter(tmp, this.altValidRanges)) {
+            if (this.validateCharacter(tmp, this.validRanges)) {
                 result += String.fromCharCode(tmp);
                 ++i;
             }
