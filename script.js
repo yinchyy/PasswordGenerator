@@ -15,7 +15,6 @@ class PasswordGenerator {
     pushCharactersFromASCIIRange(rangeStart, rangeEnd, outputArr) {
         for (let i = rangeStart; i <= rangeEnd; ++i) {
             outputArr.push(String.fromCharCode(i));
-            console.log(String.fromCharCode(i));
         }
     }
     get charactersForGenerator() {
@@ -45,15 +44,15 @@ class PasswordGenerator {
     pickRandomCharFromArray(arrayOfCharacters) {
         let min = 0;
         let max = arrayOfCharacters.length;
-        return Math.floor(Math.random() * (max - min + 1) + min);
+        return Math.floor(Math.random() * (max - min) + min);
     }
     generatePassword() {
         let i = 0, result = '';
         const arrayOfChars = [...this.charactersForGenerator];
-        console.log(arrayOfChars);
-        console.log(this.charactersForGenerator);
+        //console.log(arrayOfChars);
+        //console.log(this.charactersForGenerator);
         while (i < this.passwordLength.value) {
-            result += this.pickRandomCharFromArray(arrayOfChars);
+            result += arrayOfChars[this.pickRandomCharFromArray(arrayOfChars)];
             ++i;
         }
         return result;
