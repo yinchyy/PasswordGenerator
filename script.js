@@ -73,7 +73,8 @@ class PasswordGenerator {
             const element = document.createElement('input');
             element.setAttribute('type', 'text');
             element.setAttribute('id', 'passwordOutputField');
-            document.body.appendChild(element);
+            element.setAttribute('style', 'text-align:center');
+            document.getElementById('formOutput').appendChild(element);
         }
         const elementId = document.getElementById('passwordOutputField');
         elementId.value = this.generatePassword();
