@@ -9,18 +9,20 @@
 
 <body>
     <div class="container">
-        <form>
-            <div class="inputs">
-                <input type="checkbox" name="bigLetters" id="bigLetters" />
-                <input type="checkbox" name="smallLetters" id="smallLetters" />
-                <input type="checkbox" name="numbers" id="numbers" />
-                <input type="checkbox" name="specialSigns" id="specialSigns" />
-            </div>
-            <div class="names">
-                <label for="bigLetters">A-Z</label>
-                <label for="smallLetters">a-z</label>
-                <label for="numbers">0-9</label>
-                <label for="specialSigns">/*+=&...</label>
+        <form onsubmit="p1.displayPassword(); return false">
+            <div class="formTopBox">
+                <div class="inputs">
+                    <input type="checkbox" name="bigLetters" id="bigLetters" />
+                    <input type="checkbox" name="smallLetters" id="smallLetters" />
+                    <input type="checkbox" name="numbers" id="numbers" />
+                    <input type="checkbox" name="specialSigns" id="specialSigns" />
+                </div>
+                <div class="names">
+                    <label for="bigLetters">A-Z</label>
+                    <label for="smallLetters">a-z</label>
+                    <label for="numbers">0-9</label>
+                    <label for="specialSigns">/*+=&...</label>
+                </div>
             </div>
             <div class="setLengthAndSubmit">
                 <label for="length">Password length</label>
@@ -28,6 +30,9 @@
                 <input type="submit" value="Generate" id="generatePassword" />
             </div>
         </form>
+        <div id="formOutput">
+
+        </div>
     </div>
     <script type="text/javascript" src="script.js">
     </script>
