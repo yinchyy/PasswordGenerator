@@ -12,59 +12,49 @@ class PasswordGenerator {
         this.specialSigns.checked = false;
         this.passwordLength.value = 8;
     }
-    get validRanges() {
+    pushCharactersFromASCIIRange(rangeStart, rangeEnd, outputArr) {
+        for (let i = rangeStart; i <= rangeEnd; ++i) {
+            outputArr.push(String.fromCharCode(i));
+            console.log(String.fromCharCode(i));
+        }
+    }
+    get charactersForGenerator() {
         let tmp = new Array();
         if (this.bigLetters.checked) {
-            tmp.push([65, 90]);
+            this.pushCharactersFromASCIIRange(65, 90, tmp);
         }
         if (this.smallLetters.checked) {
-            tmp.push([97, 122]);
+            this.pushCharactersFromASCIIRange(97, 122, tmp);
         }
         if (this.numbers.checked) {
-            tmp.push([48, 57]);
+            this.pushCharactersFromASCIIRange(48, 57, tmp);
         }
         if (this.specialSigns.checked) {
-            tmp.push([[33, 47], [58, 64], [91, 96], [123, 126]]);
+            this.pushCharactersFromASCIIRange(33, 47, tmp);
+            this.pushCharactersFromASCIIRange(58, 64, tmp);
+            this.pushCharactersFromASCIIRange(91, 96, tmp);
+            this.pushCharactersFromASCIIRange(123, 126, tmp);
         }
         if (tmp.length === 0) {
-            tmp.push([65, 90]);
-            tmp.push([97, 122]);
-            tmp.push([48, 57]);
+            this.pushCharactersFromASCIIRange(65, 90, tmp);
+            this.pushCharactersFromASCIIRange(97, 122, tmp);
+            this.pushCharactersFromASCIIRange(48, 57, tmp);
         }
         return tmp;
     }
-    pickRandomASCIICharacter() {
-        let min = 33;
-        let max = 126;
+    pickRandomCharFromArray(arrayOfCharacters) {
+        let min = 0;
+        let max = arrayOfCharacters.length;
         return Math.floor(Math.random() * (max - min + 1) + min);
     }
-    validateCharacter(characterNum, arrayOfValidRanges) {
-        let range = 0;
-        for (range of arrayOfValidRanges) {
-            if (characterNum >= range[0] && characterNum <= range[1]) {
-                return true;
-            }
-            else if (typeof (range) === 'object') {
-                let index = 0;
-                for (index of range) {
-                    if (characterNum >= index[0] && characterNum <= index[1]) {
-                        return true;
-                    }
-                }
-            }
-            else {
-                return false;
-            }
-        }
-    }
     generatePassword() {
-        let i = 0, tmp, result = '';
+        let i = 0, result = '';
+        const arrayOfChars = [...this.charactersForGenerator];
+        console.log(arrayOfChars);
+        console.log(this.charactersForGenerator);
         while (i < this.passwordLength.value) {
-            tmp = this.pickRandomASCIICharacter();
-            if (this.validateCharacter(tmp, this.validRanges)) {
-                result += String.fromCharCode(tmp);
-                ++i;
-            }
+            result += this.pickRandomCharFromArray(arrayOfChars);
+            ++i;
         }
         return result;
     }
