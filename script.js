@@ -49,8 +49,6 @@ class PasswordGenerator {
     generatePassword() {
         let i = 0, result = '';
         const arrayOfChars = [...this.charactersForGenerator];
-        //console.log(arrayOfChars);
-        //console.log(this.charactersForGenerator);
         while (i < this.passwordLength.value) {
             result += arrayOfChars[this.pickRandomCharFromArray(arrayOfChars)];
             ++i;
